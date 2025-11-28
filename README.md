@@ -76,15 +76,23 @@ php artisan serve
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="screenshots/home.png" width="30%" />
-  <img src="screenshots/home2.png" width="30%" />
-  <img src="screenshots/post-show.png" width="30%" />
+  <img src="screenshots/home.png" width="45%" />
+  <img src="screenshots/home2.png" width="45%" />
 </p>
 
 <p align="center">
-  <img src="screenshots/post-show.png" width="30%" />
-  <img src="screenshots/post-show-drop.png" width="30%" />
-  <img src="screenshots/post-show-comment.png" width="30%" />
+  <img src="screenshots/post-show.png" width="45%" />
+  <img src="screenshots/post-show-comment.png" width="45%" />
+</p>
+
+<p align="center">
+  <img src="screenshots/profile.png" width="45%" />
+  <img src="screenshots/edit-profile.png" width="45%" />
+</p>
+
+<p align="center">
+  <img src="screenshots/create-post.png" width="45%" />
+  <img src="screenshots/notification.png" width="45%" />
 </p>
 
 
