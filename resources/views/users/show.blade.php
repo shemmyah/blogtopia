@@ -72,7 +72,7 @@
         @if ($posts->count() > 0)
             <div class="d-flex align-items-center justify-content-between my-5">
                 <h3 class="fw-bold m-0" style="color: #396cb2;">
-                    {{ ucfirst($user->name) }}'s Posts
+                    {{ ucfirst($user->name) }}'s Latest Posts
                 </h3>
                 @if (Auth::user()->id == $user->id)
                     <a href="{{ route('post.user', $user->id) }}" class="btn btn-sm btn-custom" style="font-weight: 700;">

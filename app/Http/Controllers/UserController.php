@@ -22,9 +22,9 @@ class UserController extends Controller
         $user = User::findOrFail($user);
 
         if (Auth::id() === $user->id) {
-            $posts = $user->posts()->latest()->get();
+            $posts = $user->posts()->latest()->take(3)->get();
         } else {
-            $posts = $user->posts()->where('visibility', 'public')->latest()->get();
+            $posts = $user->posts()->where('visibility', 'public')->latest()->take(3)->get();
         }
 
         return view('users.show')
