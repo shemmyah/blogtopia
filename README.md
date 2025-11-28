@@ -95,5 +95,18 @@ php artisan serve
   <img src="screenshots/notification.png" width="45%" />
 </p>
 
+## 🤝 Contributing
+
+If you’d like to contribute or have feedback, feel free to **contact me**:  
+📧 Email: [your-email@example.com](mailto:your-email@example.com)
+
+---
+
+## 🌼 Developer
+
+**Shem** – Full-stack developer passionate about **Building user-friendly web apps**.  
+
+
+
 
 
