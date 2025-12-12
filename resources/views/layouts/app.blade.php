@@ -107,6 +107,7 @@
         .dropdown-item:hover {
             color: #e8e9eb
         }
+
         .dropdown-header {
             color: #396cb2;
         }
@@ -121,6 +122,30 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             cursor: pointer;
         }
+
+        .nav-item:hover {
+            color: #396cb2;
+        }
+
+        .dropdown-item span {
+            white-space: normal !important;
+            word-wrap: break-word !important;
+        }
+
+        .dropdown-item:hover span,
+        .dropdown-item:hover small {
+            color: #e8e9eb !important;
+        }
+
+        .dropdown-item {
+            line-height: 1.3;
+        }
+
+        .badge-notification {
+            border-radius: 12px;
+            padding: 0.2em 0.5em;
+        }
+
 
         main {
             padding-top: 40px;
@@ -166,6 +191,13 @@
                                 {{-- <li class="nav-item">
                                     <a href="{{ route('post.create') }}" class="nav-link">Create Post</a>
                                 </li> --}}
+                                <li class="nav-item me-2">
+                                    <a href="{{ route('index') }}"
+                                        class="nav-link nav-icons d-flex justify-content-center align-items-center"
+                                        style="width: 42px; height: 42px; border-radius: 50%; border: 2px solid #396cb2;">
+                                        <i class="fa-solid fa-house" style="font-size: 23px; color: #396cb2;"></i>
+                                    </a>
+                                </li>
                                 <li class="nav-item dropdown">
                                     <a id="notificationsDropdown"
                                         class="nav-link nav-icons me-2 position-relative d-flex justify-content-center align-items-center"
@@ -174,8 +206,7 @@
                                         style="width: 42px; height: 42px; border-radius: 50%; border: 2px solid #396cb2;">
                                         <i class="fa-solid fa-bell" style="font-size: 25px; color: #396cb2;"></i>
                                         @if (auth()->user()->unreadNotifications->count())
-                                            <span
-                                                class="badge bg-danger rounded-circle position-absolute top-0 start-100 translate-middle p-1">
+                                            <span class="badge badge-notification position-absolute">
                                                 {{ auth()->user()->unreadNotifications->count() }}
                                             </span>
                                         @endif
@@ -185,7 +216,11 @@
                                         aria-labelledby="notificationsDropdown"
                                         style="width: 300px; max-height: 400px; overflow-y: auto; border-radius: 12px;">
 
-                                        <h6 class="dropdown-header fw-bold">Notifications</h6>
+                                        <h6 class="dropdown-header fw-bold lh-base">
+                                            Notifications <br>
+                                            <span class="text-muted small">(Notification will be deleted once
+                                                clicked)</span>
+                                        </h6>
                                         <div class="dropdown-divider"></div>
 
                                         @forelse(auth()->user()->unreadNotifications as $notification)
@@ -197,15 +232,15 @@
                                                     class="text-muted">{{ $notification->created_at->diffForHumans() }}</small>
                                             </a>
                                         @empty
-                                            <span class="dropdown-item text-muted text-center">No new notifications</span>
+                                            <span class="dropdown-item text-muted text-start">No new notifications</span>
                                         @endforelse
 
                                         <div class="dropdown-divider"></div>
-                                        <a href="#" class="dropdown-item text-center text-primary fw-bold">
+                                        {{-- <a href="#" class="dropdown-item text-start text-primary fw-bold">
                                             See All Notifications
-                                        </a>
+                                        </a> --}}
                                         {{-- <a href="{{ route('notifications.all') }}"
-                                            class="dropdown-item text-center text-primary fw-bold">
+                                            class="dropdown-item text-start text-primary fw-bold">
                                             See All Notifications
                                         </a> --}}
                                     </div>
@@ -213,7 +248,7 @@
 
 
 
-                                <li>
+                                {{-- <li>
                                     <a href="{{ route('profile.show', Auth::user()->id) }}">
                                         @if (Auth::user()->avatar)
                                             <img src="{{ asset('storage/avatars/' . Auth::user()->avatar) }}"
@@ -226,13 +261,27 @@
                                             </div>
                                         @endif
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    {{-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
                                         {{ Auth::user()->name }}
+                                    </a> --}}
+
+                                    <a href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                                        @if (Auth::user()->avatar)
+                                            <img src="{{ asset('storage/avatars/' . Auth::user()->avatar) }}"
+                                                alt="{{ Auth::user()->name }}" class="nav-icons rounded-circle me-1"
+                                                style="width: 40px; height: 40px; object-fit: cover; border: 2px solid #396cb2;">
+                                        @else
+                                            <div class="avatar-placeholder nav-icons me-1 d-flex justify-content-center align-items-center"
+                                                style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #396cb2;">
+                                                <i class="fa-solid fa-user" style="font-size: 20px; color: #396cb2;"></i>
+                                            </div>
+                                        @endif
                                     </a>
+
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                         {{-- Profile --}}
                                         <a href="{{ route('profile.show', Auth::user()->id) }}"

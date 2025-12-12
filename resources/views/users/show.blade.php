@@ -15,24 +15,37 @@
         <div class="card user-profile-card mb-4 shadow-sm p-4 d-flex flex-row align-items-start">
             <div class="left-column me-4 text-center" style="flex-shrink: 0; min-width: 250px;">
                 <!-- Avatar -->
-                <div class="user-avatar mb-3">
+                <div class="user-avatar mb-3 position-relative" style="width: 150px; height: 150px;">
                     @if ($user->avatar)
                         <img src="{{ asset('storage/avatars/' . $user->avatar) }}" alt="{{ $user->name }}"
-                            class="rounded-circle"
-                            style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #396cb2;">
+                            class="rounded-circle w-100 h-100" style="object-fit: cover; border: 3px solid #396cb2;">
+
+                        @if (Auth::id() === $user->id)
+                            <!-- Edit Icon -->
+                            <a href="{{ route('profile.edit', $user->id) }}" class="edit-avatar-icon">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                        @endif
                     @else
-                        <div class="avatar-placeholder rounded-circle d-flex justify-content-center align-items-center ms-5"
-                            style="width: 150px; height: 150px; background-color: #e8e9eb; border: 3px solid #396cb2; overflow: hidden;">
+                        <div class="avatar-placeholder rounded-circle d-flex justify-content-center align-items-center"
+                            style="width: 150px; height: 150px; background-color: #e8e9eb; border: 3px solid #396cb2;">
                             <i class="fa-solid fa-user text-muted" style="font-size: 60px;"></i>
+
+                            @if (Auth::id() === $user->id)
+                                <a href="{{ route('profile.edit', $user->id) }}" class="edit-avatar-icon">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                            @endif
                         </div>
                     @endif
+                    <h2 class="fw-bold my-3" style="color: #27374D;">{{ $user->name }}</h2>
                 </div>
 
-                <h2 class="fw-bold mb-3" style="color: #27374D;">{{ $user->name }}</h2>
 
-                @if (Auth::id() === $user->id)
+
+                {{-- @if (Auth::id() === $user->id)
                     <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-sm btn-custom">Edit Profile</a>
-                @endif
+                @endif --}}
             </div>
 
             <div class="right-column flex-fill d-flex justify-content-center align-items-center">
@@ -101,7 +114,6 @@
                                         class="post-card-img">
                                 </div>
                                 @if (Auth::user()->id == $post->user->id)
-                                
                                     <div class="dropdown post-img-actions">
                                         <button class="btn btn-sm btn-light dropdown-toggle" type="button"
                                             id="postActionDropdown{{ $post->id }}" data-bs-toggle="dropdown"
@@ -143,7 +155,7 @@
         @else
             <div class="d-flex justify-content-center mt-5">
                 <div class="card about-me shadow-sm text-center p-4"
-                    style="max-width: 320px; border-radius: 16px; background-color: #e8e9eb; {{ Auth::id() === $user->id ? 'border: 2px dashed #396cb2;' : '' }}">
+                    style="max-width: 320px; border-radius: 16px; background-color: #e8e9eb;">
                     <div class="mb-3">
                         <i class="fa-solid fa-folder-open text-muted" style="font-size: 48px;"></i>
                     </div>
@@ -229,7 +241,7 @@
         }
 
         .about-me {
-            border: 2px dashed #27374D;
+            /* border: 2px dashed #27374D; */
             transition: all 0.3s ease;
         }
 
@@ -258,6 +270,33 @@
         .post-img-actions .btn:hover {
             /* background-color: rgba(0, 0, 0, 0.7); */
             color: #27374D
+        }
+
+        .user-avatar {
+            position: relative;
+        }
+
+        .edit-avatar-icon {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: #396cb2;
+            color: #879dbc;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #d4d5d8;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .edit-avatar-icon:hover {
+            background-color: #2f5390;
+            /* color: #ebeff3 */
+            transform: scale(1.1);
         }
     </style>
 @endsection
