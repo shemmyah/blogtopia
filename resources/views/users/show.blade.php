@@ -38,7 +38,7 @@
                             @endif
                         </div>
                     @endif
-                    <h2 class="fw-bold my-3" style="color: #27374D;">{{ $user->name }}</h2>
+                    <p class="my-3" style="color: #27374D; font-size: 1.3em;">{{ $user->name }}</p>
                 </div>
 
 
