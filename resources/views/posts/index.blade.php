@@ -3,10 +3,12 @@
 @section('title', 'Home')
 
 @section('content')
-    <div class="page-header text-center mb-4">
-        <h1 style="color: #27374D; font-weight: 700;">Your Feed</h1>
-        <p style="color: #526D82;">Catch up on the latest posts from your community</p>
-    </div>
+    @if ($all_posts->isNotEmpty())
+        <div class="page-header text-center mb-4">
+            <h1 style="color: #27374D; font-weight: 700;">Your Feed</h1>
+            <p style="color: #526D82;">Catch up on the latest posts from your community</p>
+        </div>
+    @endif
 
     <button type="button" class="fab-btn" data-bs-toggle="modal" data-bs-target="#createPostModal">
         <i class="fa-solid fa-plus fa-lg"></i>
@@ -115,12 +117,24 @@
                 </div>
             </div>
         @empty
-            <div class="text-center mt-5 w-100" style="color: #526D82;">
-                <h3>No Posts Yet</h3>
-                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#createPostModal">
-                    Create a new post
-                </a>
+            <div class="text-center mt-5 w-100">
+                <div class="p-4 mx-auto shadow-sm" style="max-width: 350px; border-radius: 16px; background: #e8e9eb;">
+
+                    <div class="mb-3">
+                        <i class="fa-solid fa-folder-open" style="font-size: 40px; color: #526D82;"></i>
+                    </div>
+
+                    <h4 class="fw-bold mb-2" style="color: #526D82;">No Posts Yet</h4>
+
+                    <p class="text-muted mb-3" style="font-size: 0.9rem;">
+                        Start sharing your thoughts and experiences.
+                    </p>
+
+                    <a href="#" class="btn-create-post text-decoration-none" data-bs-toggle="modal" data-bs-target="#createPostModal">Create a Post</a>
+
+                </div>
             </div>
+
         @endforelse
     </div>
 
@@ -134,32 +148,6 @@
             font-size: 1rem;
         }
 
-        /*
-                    .fab-btn {
-                        position: fixed;
-                        bottom: 30px;
-                        right: 30px;
-                        width: 60px;
-                        height: 60px;
-                        border-radius: 50%;
-                        background-color: #396cb2;
-                        color: white;
-                        border: none;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-                        cursor: pointer;
-                        z-index: 1000;
-                        transition: background-color 0.2s, transform 0.2s;
-                    }
-
-                    .fab-btn:hover {
-                        background-color: #2f5390;
-                        transform: translateY(-2px);
-                    } */
-
-        /* Post Cards */
         .post-card {
             border-radius: 16px;
             background-color: #ffffff;
@@ -303,6 +291,19 @@
         .post-img-actions .btn:hover {
             /* background-color: rgba(0, 0, 0, 0.7); */
             color: #27374D
+        }
+
+        .btn-create-post {
+            background: #526D82;
+            color: white;
+            border-radius: 8px;
+            padding: 10px 18px;
+            display: inline-block;
+            transition: transform 0.25s ease;
+        }
+
+        .btn-create-post:hover {
+            transform: scale(1.07);
         }
     </style>
 @endsection
